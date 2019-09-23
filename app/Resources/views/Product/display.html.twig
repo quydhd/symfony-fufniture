@@ -1,0 +1,34 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+
+    <div class ="shadow-lg p-3 m-5 col-sm-6 bg-white mx-auto ">
+        <h2 class="text-center text-danger m-5">Product Manager</h2>
+    <table class = "table thead-dark table-bordered table-striped ">
+        <tr class="text-center">
+            <th >Name</th>
+            <th>Color</th>
+            <th>Price</th>
+            <th>Edit</th>
+        </tr>
+        {% for x in data %}
+            <tr>
+                <td class="text-center">{{ x.name }}</td>
+                <td class="text-center">{{ x.color }}</td>
+                <td class= "text-right">{{ x.price }}</td>
+                <td class ="text-center">
+                    <div class="dropdown">
+                        <button type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown">
+                            Edit
+                        </button>
+                        <div class="dropdown-menu">
+                            <a class="dropdown-item" href="{{ path('web_product_update', { 'id' : x.id }) }}">Edit</a>
+                            <a class="dropdown-item" href="{{ path('web_product_delete', { 'id' : x.id }) }}">Delete</a>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+        {% endfor %}
+    </table>
+        <a href = "{{ path('web_product_new')}}" class=" shadow-lg col-sm-12 mt-2 btn btn-danger font-weight-bold">Add</a>
+    </div>
+{% endblock %}
